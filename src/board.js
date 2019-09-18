@@ -1,5 +1,5 @@
 import React from "react"
-import Square from "./square"
+import Square from "./components/square"
 
 class Board extends React.Component {
     constructor() {
@@ -9,11 +9,17 @@ class Board extends React.Component {
       };
     }
     renderSquare(i) {
-      return <Square   value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
-      />;  //value={i+1}
+      return (
+        <Square   value={this.state.squares[i]}
+          onClick={() => this.handleClick(i)}
+        />
+      );  //value={i+1}
     }
-  
+    handleClick(i) {
+      const squares = this.state.squares.slice();
+      squares[i] = 'X';
+      this.setState({squares: squares});
+    }
     render() {
       const status = 'Next player: X';
   
